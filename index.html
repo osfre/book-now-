@@ -8,5 +8,54 @@
 </head>
 <body>
     <a href="tel:00970597717712">Book Now</a>
+    <script>
+        // Set up the API endpoint and payload
+const apiEndpoint = 'https://api.printful.com/orders';
+const payload = {
+  recipient: {
+    name: 'John Doe',
+    address1: '123 Main St',
+    city: 'Anytown',
+    state_code: 'CA',
+    country_code: 'US',
+    zip: '12345'
+  },
+  items: [
+    {
+      variant_id: 1234,
+      quantity: 1
+    }
+  ]
+};
+
+// Set up the API headers with the authentication token
+const headers = {
+  Authorization: 'Bearer a25Zk6dj0Nw73ovEdMOSZNjlAjttvQF1bvctH0eq'
+};
+
+// Make the API request using the fetch function
+fetch(apiEndpoint, {
+  method: 'POST',
+  headers: headers,
+  body: JSON.stringify(payload)
+})
+  .then(response => {
+    if (response.ok) {
+      console.log('API request successful!');
+      return response.json();
+    } else {
+      console.log(
+        `API request failed with error code ${response.status}: ${response.statusText}`
+      );
+    }
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.log('API request failed with error:', error);
+  });
+
+    </script>
 </body>
 </html>
